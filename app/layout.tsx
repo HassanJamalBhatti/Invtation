@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://invitation-inky.vercel.app"),
+  metadataBase: new URL("https://invtation-inky.vercel.app"),
 
   title: "Hassan Jamal & Misha Shehzadi",
   description:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/invitation.png",
+        url: "/Invitation.png",
         width: 1200,
         height: 630,
         alt: "Hassan Jamal and Misha Shehzadi Wedding Invitation",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hassan Jamal & Misha Shehzadi",
     description: "Wedding Invitation | January 2027",
-    images: ["/invitation.png"],
+    images: ["/Invitation.png"],
   },
 
   icons: {
