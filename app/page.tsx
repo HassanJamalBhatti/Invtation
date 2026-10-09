@@ -866,7 +866,7 @@ export default function WeddingInvitation() {
         </p>
 
         <h2 className="mt-6 font-serif text-4xl italic sm:text-7xl">
-          {couple.bride} & {couple.groom}
+          {couple.groom} & {couple.bride}
         </h2>
 
         <p className="mt-7 text-sm leading-7 text-white/75">
