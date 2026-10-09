@@ -22,7 +22,7 @@ const events = [
     date: "2027-01-08",
     start: "2027-01-08T17:00:00+05:00",
     end: "2027-01-08T23:00:00+05:00",
-    time: "5:00 PM – 11:00 PM",
+    time: "01:00 PM – 04:00 PM",
     venue: "Crown Palace, Gujranwala (Crown Cinema Chowk)",
     dress: "Formal & Elegant",
     description:
@@ -34,7 +34,7 @@ const events = [
     date: "2027-01-09",
     start: "2027-01-09T19:00:00+05:00",
     end: "2027-01-09T23:00:00+05:00",
-    time: "7:00 PM – 11:00 PM",
+    time: "01:00 PM – 04:00 PM",
     venue:
       "M.B Palace, Gujranwala (Hafiz Abad Road Near Ghory Shah Chowk)",
     dress: "Semi-Formal",
@@ -142,7 +142,7 @@ function CalendarButtons({
         onClick={() => downloadCalendar(event)}
         className="rounded-full border border-[#c8b783] px-5 py-3 text-xs font-medium tracking-wide transition hover:bg-[#f0ead9]"
       >
-        ↓ Download .ics
+         Download 
       </button>
     </div>
   );
@@ -290,43 +290,44 @@ export default function WeddingInvitation() {
         {musicPlaying ? "Ⅱ Pause Music" : "♫ Play Music"}
       </button>
 
+
       {/* 1. Hero */}
       <section
         id="home"
-        className="relative flex min-h-screen min-h-[100svh] items-center justify-center bg-cover bg-center px-5 py-20 text-center"
+        className="relative flex min-h-[100svh] items-center justify-center bg-cover bg-center px-5 py-16 text-center sm:py-20"
         style={{
           backgroundImage:
             "linear-gradient(rgba(23,36,28,.38),rgba(23,36,28,.55)),url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85')",
         }}
       >
-        <div className="max-w-3xl text-white">
-          <p className="text-xs uppercase tracking-[0.4em] sm:text-sm">
+        <div className="w-full max-w-3xl text-white">
+          <p className="text-[10px] uppercase tracking-[0.3em] sm:text-sm sm:tracking-[0.4em]">
             A celebration of love
           </p>
 
-          <p className="mt-10 font-serif text-2xl italic sm:text-3xl">
+          <p className="mt-6 font-serif text-xl italic sm:mt-10 sm:text-3xl">
             Together with our families
           </p>
 
-          <h1 className="mt-5 font-serif text-6xl font-normal leading-tight sm:text-8xl">
+          <h1 className="mt-4 font-serif text-5xl font-normal leading-tight sm:mt-5 sm:text-8xl">
             {couple.bride}
             <span className="block text-[#e7d5a2]">&</span>
             {couple.groom}
           </h1>
 
-          <div className="mx-auto my-8 h-px w-28 bg-[#e7d5a2]" />
+          <div className="mx-auto my-5 h-px w-20 bg-[#e7d5a2] sm:my-8 sm:w-28" />
 
-          <p className="text-sm uppercase tracking-[0.25em] sm:text-base">
+          <p className="text-xs uppercase tracking-[0.15em] sm:text-base sm:tracking-[0.25em]">
             Invite you to share our special day
           </p>
 
-          <p className="mt-5 font-serif text-2xl italic">
+          <p className="mt-4 font-serif text-xl italic sm:mt-5 sm:text-2xl">
             {couple.date}
           </p>
 
           <a
             href="#events"
-            className="mt-10 inline-block border border-white/70 px-8 py-4 text-xs uppercase tracking-[0.25em] transition hover:bg-white hover:text-[#344b3d]"
+            className="mt-7 inline-block border border-white/70 px-6 py-3 text-[10px] uppercase tracking-[0.2em] transition hover:bg-white hover:text-[#344b3d] sm:mt-10 sm:px-8 sm:py-4 sm:text-xs sm:tracking-[0.25em]"
           >
             Explore Our Wedding ↓
           </a>
@@ -334,7 +335,7 @@ export default function WeddingInvitation() {
 
         <a
           href="#story"
-          className="absolute bottom-8 text-xs uppercase tracking-[0.3em] text-white/80"
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] uppercase tracking-[0.25em] text-white/80 sm:bottom-8 sm:text-xs sm:tracking-[0.3em]"
         >
           Scroll to discover
         </a>
