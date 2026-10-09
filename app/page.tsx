@@ -341,9 +341,9 @@ export default function WeddingInvitation() {
           </p>
 
           <h1 className="mt-4 font-serif text-5xl font-normal leading-tight sm:mt-5 sm:text-8xl">
-            {couple.bride}
-            <span className="block text-[#e7d5a2]">&</span>
             {couple.groom}
+            <span className="block text-[#e7d5a2]">&</span>
+            {couple.bride}
           </h1>
 
           <div className="mx-auto my-5 h-px w-20 bg-[#e7d5a2] sm:my-8 sm:w-28" />
