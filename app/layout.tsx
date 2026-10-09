@@ -1,21 +1,19 @@
 
 import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://invitation-inky.vercel.app"),
 
-  title: "Hassan Jamal & Misha Shehzadi | Wedding Invitation",
-
+  title: "Hassan Jamal & Misha Shehzadi",
   description:
-    "Join us to celebrate the wedding of Hassan Jamal and Misha Shehzadi on 7, 8 and 9 January 2027.",
+    "You're invited to celebrate the wedding of Hassan Jamal and Misha Shehzadi.",
 
   openGraph: {
     title: "Hassan Jamal & Misha Shehzadi",
-    description:
-      "Mehndi • 7 January | Barat • 8 January | Walima • 9 January 2027",
+    description: "Wedding Invitation | January 2027",
     url: "/",
-    siteName: "Hassan & Misha Wedding",
-    locale: "en_US",
+    siteName: "Wedding Invitation",
     type: "website",
     images: [
       {
@@ -33,4 +31,20 @@ export const metadata: Metadata = {
     description: "Wedding Invitation | January 2027",
     images: ["/og-invitation.jpg"],
   },
+
+  icons: {
+    icon: "/favicon.png",
+  },
 };
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
