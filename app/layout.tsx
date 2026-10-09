@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/Invitation.png",
+        url: "/invitation.png",
         width: 1200,
         height: 630,
         alt: "Hassan Jamal and Misha Shehzadi Wedding Invitation",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hassan Jamal & Misha Shehzadi",
     description: "Wedding Invitation | January 2027",
-    images: ["/Invitation.png"],
+    images: ["/invitation.png"],
   },
 
   icons: {
