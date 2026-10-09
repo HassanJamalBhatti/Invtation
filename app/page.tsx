@@ -10,7 +10,7 @@ const events = [
     date: "2027-01-07",
     start: "2027-01-07T18:00:00+05:00",
     end: "2027-01-07T22:00:00+05:00",
-    time: "6:00 PM – 10:00 PM",
+    time: "06:00 PM – 10:00 PM",
     venue:
       "Sardar Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala",
     dress: "Traditional & Colorful",
@@ -23,7 +23,7 @@ const events = [
     date: "2027-01-08",
     start: "2027-01-08T17:00:00+05:00",
     end: "2027-01-08T23:00:00+05:00",
-    time: "5:00 PM – 11:00 PM",
+    time: "01:00 PM – 04:00 PM",
     venue: "Crown Palace, Crown Cinema Chowk, Gujranwala",
     dress: "Formal & Elegant",
     description:
@@ -35,7 +35,7 @@ const events = [
     date: "2027-01-09",
     start: "2027-01-09T19:00:00+05:00",
     end: "2027-01-09T23:00:00+05:00",
-    time: "7:00 PM – 11:00 PM",
+    time: "01:00 PM – 04:00 PM",
     venue:
       "M.B Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala",
     dress: "Semi-Formal",
