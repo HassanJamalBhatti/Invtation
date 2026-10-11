@@ -1,7 +1,8 @@
-
 "use client";
+import WeddingSplashScreen from "@/components/WeddingSplashScreen";
 
 import { useEffect, useRef, useState } from "react";
+
 import type { FormEvent } from "react";
 
 const events = [
@@ -253,9 +254,9 @@ const urduNames: Record<string, string> = {
   "Sardar Palace Marriage Hall": "سردار پیلس میرج ہال",
   "Crown Palace Marriage Hall": "کراؤن پیلس میرج ہال",
   "M.B Palace Marriage Hall": "ایم بی پیلس میرج ہال",
-  "Sardar Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala": "سردار پیلس، حافظ آباد روڈ، غوری شاہ چوک کے قریب، گوجرانوالہ",
+  "Sardar Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala": "سردار پیلس، حافظ آباد روڈ، گھوڑے شاہ چوک کے قریب، گوجرانوالہ",
   "Crown Palace, Crown Cinema Chowk, Gujranwala": "کراؤن پیلس، کراؤن سنیما چوک، گوجرانوالہ",
-  "M.B Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala": "ایم بی پیلس، حافظ آباد روڈ، غوری شاہ چوک کے قریب، گوجرانوالہ",
+  "M.B Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala": "ایم بی پیلس، حافظ آباد روڈ، گھوڑے شاہ چوک کے قریب، گوجرانوالہ",
   "Hafiz Abad Road, Gujranwala": "حافظ آباد روڈ، گوجرانوالہ",
   "Crown Cinema Chowk, Gujranwala": "کراؤن سنیما چوک، گوجرانوالہ",
   "Gujranwala, Pakistan": "گوجرانوالہ، پاکستان",
@@ -287,6 +288,7 @@ export default function WeddingInvitation() {
   const [guestName, setGuestName] = useState("");
   const [guestCount, setGuestCount] = useState("2");
   const [message, setMessage] = useState("");
+  const [invitationOpened, setInvitationOpened] = useState(false);
 
   useEffect(() => {
     const target = new Date("2027-01-07T18:00:00+05:00").getTime();
@@ -363,6 +365,14 @@ export default function WeddingInvitation() {
 
   return (
     <main className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#faf8f1] text-[#344b3d]">
+      {!invitationOpened && (
+      <WeddingSplashScreen
+        bride={couple.bride}
+        groom={couple.groom}
+        onOpen={() => setInvitationOpened(true)}
+      />
+    )}
+
       <audio
         ref={musicRef}
         src="/music/wedding-romantic.mp3"
