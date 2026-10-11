@@ -243,6 +243,35 @@ function Bi({ en, ur, className = "" }: { en: string; ur: string; className?: st
   );
 }
 
+const urduNames: Record<string, string> = {
+  "Misha Shehzadi": "میشہ شہزادی",
+  "Hassan Jamal": "حسن جمال",
+  "Muhammad Nasir": "محمد ناصر",
+  "Zohra Yasmin": "زہرہ یاسمین",
+  "Muhammad Jamal": "محمد جمال",
+  "Ghulam Fatima": "غلام فاطمہ",
+  "Sardar Palace Marriage Hall": "سردار پیلس میرج ہال",
+  "Crown Palace Marriage Hall": "کراؤن پیلس میرج ہال",
+  "M.B Palace Marriage Hall": "ایم بی پیلس میرج ہال",
+  "Sardar Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala": "سردار پیلس، حافظ آباد روڈ، غوری شاہ چوک کے قریب، گوجرانوالہ",
+  "Crown Palace, Crown Cinema Chowk, Gujranwala": "کراؤن پیلس، کراؤن سنیما چوک، گوجرانوالہ",
+  "M.B Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala": "ایم بی پیلس، حافظ آباد روڈ، غوری شاہ چوک کے قریب، گوجرانوالہ",
+  "Hafiz Abad Road, Gujranwala": "حافظ آباد روڈ، گوجرانوالہ",
+  "Crown Cinema Chowk, Gujranwala": "کراؤن سنیما چوک، گوجرانوالہ",
+  "Gujranwala, Pakistan": "گوجرانوالہ، پاکستان",
+};
+
+function NameText({ value, className = "" }: { value: string; className?: string }) {
+  return (
+    <span className={`inline-flex flex-col ${className}`}>
+      <span>{value}</span>
+      <span lang="ur" dir="rtl" className="font-sans text-[0.9em] tracking-normal leading-relaxed">
+        {urduNames[value] || value}
+      </span>
+    </span>
+  );
+}
+
 export default function WeddingInvitation() {
   const [remaining, setRemaining] = useState({
     days: 0,
@@ -350,7 +379,7 @@ export default function WeddingInvitation() {
         aria-label={musicPlaying ? "Pause background music" : "Play background music"}
         className="fixed bottom-5 right-4 z-50 rounded-full border border-[#d6c18b] bg-[#344b3d]/95 px-4 py-3 text-xs uppercase tracking-widest text-white shadow-lg backdrop-blur transition hover:bg-[#506b56] sm:right-5 sm:px-5"
       >
-        {musicPlaying ? "Ⅱ Pause Music | موسیقی روکیں" : "♫ Play Music | موسیقی چلائیں"}
+        {musicPlaying ? "Ⅱ" : "♫ "}
       </button>
 
       {/* 1. Hero */}
@@ -372,9 +401,9 @@ export default function WeddingInvitation() {
           </p>
 
           <h1 className="mt-4 font-serif text-5xl font-normal leading-tight sm:mt-5 sm:text-8xl">
-            {couple.groom}
+            <NameText value={couple.groom} />
             <span className="block text-[#e7d5a2]">&</span>
-            {couple.bride}
+            <NameText value={couple.bride} />
           </h1>
 
           <div className="mx-auto my-5 h-px w-20 bg-[#e7d5a2] sm:my-8 sm:w-28" />
@@ -385,6 +414,7 @@ export default function WeddingInvitation() {
 
           <p className="mt-4 font-serif text-xl italic sm:mt-5 sm:text-2xl">
             {couple.date}
+            <span lang="ur" dir="rtl" className="mt-2 block font-sans text-base">۷ تا ۹ جنوری ۲۰۲۷</span>
           </p>
 
           <a
@@ -431,7 +461,8 @@ export default function WeddingInvitation() {
           </p>
 
           <p className="mt-8 font-serif text-xl italic">
-            With love, {couple.bride} & {couple.groom}
+            <span className="block">With love, {couple.bride} & {couple.groom}</span>
+            <span lang="ur" dir="rtl" className="mt-2 block text-lg">محبت کے ساتھ، {urduNames[couple.bride]} اور {urduNames[couple.groom]}</span>
           </p>
         </div>
       </section>
@@ -474,7 +505,7 @@ export default function WeddingInvitation() {
         </div>
 
         <p className="mt-8 font-serif text-lg italic text-[#8b897d]">
-          We cannot wait to celebrate with you.
+          <Bi en="We cannot wait to celebrate with you." ur="ہم آپ کے ساتھ خوشیاں منانے کے منتظر ہیں۔" />
         </p>
       </section>
 
@@ -489,7 +520,6 @@ export default function WeddingInvitation() {
         <SectionHeading
           eyebrow="Join the celebration"
           title="Wedding Events" description="Three special celebrations, countless beautiful memories. Choose an event and add it to your calendar so you never miss a moment."
-          description="Three special celebrations, countless beautiful memories. Choose an event and add it to your calendar so you never miss a moment."
         />
 
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -534,24 +564,25 @@ export default function WeddingInvitation() {
                   </p>
 
                   <h3 className="mt-2 font-serif text-2xl text-[#26382d] sm:text-3xl">
-                    {event.title}
+                    <Bi en={event.title} ur={event.title === "Mehndi" ? "مہندی" : event.title === "Nikah & Baraat" ? "نکاح اور بارات" : "ولیمہ"} />
                   </h3>
 
                   <p className="mt-3 text-sm leading-6 text-[#77786e]">
                     {event.description}
+                    <span lang="ur" dir="rtl" className="mt-2 block">{event.title === "Mehndi" ? "موسیقی، ہنسی، رنگوں اور خوشیوں سے بھری ایک شام۔" : event.title === "Nikah & Baraat" ? "اپنوں کی محبت اور دعاؤں کے سائے میں ہماری نئی زندگی کا خوبصورت آغاز۔" : "ہماری نئی زندگی کی خوشی میں اس یادگار شام کو ہمارے ساتھ منائیں۔"}</span>
                   </p>
 
                   <div className="mt-6 space-y-4 border-t border-[#e8e0cd] pt-5 text-sm leading-6 text-[#4e5148]">
                     {/* Time */}
                     <div className="flex items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">◷</span>
-                      <p>{event.time}<span lang="ur" dir="rtl" className="mt-1 block">وقت: {event.time}</span></p>
+                      <p>{event.time}<span lang="ur" dir="rtl" className="mt-1 block">وقت: {event.time.replace("06:00 PM", "شام ۰۶:۰۰").replace("10:00 PM", "رات ۱۰:۰۰").replace("01:00 PM", "دوپہر ۰۱:۰۰").replace("04:00 PM", "شام ۰۴:۰۰")}</span></p>
                     </div>
 
                     {/* Venue */}
                     <div className="flex items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">⌖</span>
-                      <p>{event.venue}<span lang="ur" dir="rtl" className="mt-1 block">مقام: {event.venue}</span></p>
+                      <p>{event.venue}<span lang="ur" dir="rtl" className="mt-1 block">مقام: {urduNames[event.venue] || event.venue}</span></p>
                     </div>
 
                     {/* Dress Code */}
@@ -572,8 +603,7 @@ export default function WeddingInvitation() {
         </div>
 
         <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-6 text-[#77786e]">
-          Google Calendar opens a pre-filled event. The .ics file can be imported
-          into Apple Calendar, Outlook, and other compatible calendar applications.
+          گوگل کیلنڈر میں تقریب پہلے سے درج ہوگی۔ .ics فائل کو ایپل کیلنڈر، آؤٹ لک اور دیگر کیلنڈر ایپس میں شامل کیا جا سکتا ہے۔
         </p>
       </section>
 
@@ -600,14 +630,14 @@ export default function WeddingInvitation() {
             </p>
 
             <h3 className="mt-4 font-serif text-3xl">
-              {couple.bride}
+              <NameText value={couple.bride} />
             </h3>
 
             <div className="mx-auto my-6 h-px w-16 bg-[#d9cba9]" />
 
             <p className="font-serif text-xl">Daughter of <span lang="ur" dir="rtl" className="block">دخترِ</span></p>
-            <p className="mt-3 text-sm text-[#77786e]">Muhammad Nasir</p>
-            <p className="mt-1 text-sm text-[#77786e]">Zohra Yasmin</p>
+            <p className="mt-3 text-sm text-[#77786e]">Muhammad Nasir <span lang="ur" dir="rtl" className="mt-1 block">محمد ناصر</span></p>
+            <p className="mt-1 text-sm text-[#77786e]">Zohra Yasmin <span lang="ur" dir="rtl" className="mt-1 block">زہرہ یاسمین</span></p>
 
             <p className="mt-6 text-sm italic leading-7 text-[#77786e]">
               With their love and blessings, she begins a beautiful new chapter.
@@ -622,14 +652,14 @@ export default function WeddingInvitation() {
             </p>
 
             <h3 className="mt-4 font-serif text-3xl">
-              {couple.groom}
+              <NameText value={couple.groom} />
             </h3>
 
             <div className="mx-auto my-6 h-px w-16 bg-[#d9cba9]" />
 
             <p className="font-serif text-xl">Son of <span lang="ur" dir="rtl" className="block">فرزندِ</span></p>
-            <p className="mt-3 text-sm text-[#77786e]">Muhammad Jamal</p>
-            <p className="mt-1 text-sm text-[#77786e]">Ghulam Fatima</p>
+            <p className="mt-3 text-sm text-[#77786e]">Muhammad Jamal <span lang="ur" dir="rtl" className="mt-1 block">محمد جمال</span></p>
+            <p className="mt-1 text-sm text-[#77786e]">Ghulam Fatima <span lang="ur" dir="rtl" className="mt-1 block">غلام فاطمہ</span></p>
 
             <p className="mt-6 text-sm italic leading-7 text-[#77786e]">
               With their love and blessings, he begins a beautiful new chapter.
@@ -694,7 +724,7 @@ export default function WeddingInvitation() {
                     </p>
 
                     <h3 className="mt-3 font-serif text-2xl leading-snug text-[#344b3d]">
-                      {venue.eventTitle}
+                      <Bi en={venue.eventTitle} ur={venue.eventTitle === "Mehndi" ? "مہندی" : venue.eventTitle === "Nikah & Baraat" ? "نکاح اور بارات" : "ولیمہ"} />
                     </h3>
 
                     <div className="mx-auto my-5 flex items-center gap-3">
@@ -704,17 +734,18 @@ export default function WeddingInvitation() {
                     </div>
 
                     <h4 className="text-base font-medium leading-relaxed text-[#4b5144]">
-                      {venue.venueName}
+                      <NameText value={venue.venueName} />
                     </h4>
 
                     <p className="mt-2 text-sm text-[#858276]">
                       {venue.address}
+                      <span lang="ur" dir="rtl" className="mt-1 block">{urduNames[venue.address] || venue.address}</span>
                     </p>
 
                     {event && (
                       <div className="mt-5 border-t border-[#eee5d3] pt-4">
                         <p className="text-xs uppercase tracking-[0.18em] text-[#a28c58]">
-                          Event details
+                          <Bi en="Event details" ur="تقریب کی تفصیلات" />
                         </p>
 
                         <p className="mt-2 text-sm leading-6 text-[#6e7065]">
@@ -785,7 +816,7 @@ export default function WeddingInvitation() {
             htmlFor="guest-name"
             className="mb-2 block text-xs uppercase tracking-widest text-[#8b897d]"
           >
-            Your name
+            <Bi en="Your name" ur="آپ کا نام" />
           </label>
 
           <input
@@ -799,7 +830,7 @@ export default function WeddingInvitation() {
           />
 
           <p className="mb-3 text-xs uppercase tracking-widest text-[#8b897d]">
-            Will you attend?
+            <Bi en="Will you attend?" ur="کیا آپ تقریب میں شرکت کریں گے؟" />
           </p>
 
           <div className="mb-6 flex flex-wrap gap-5 text-sm">
@@ -811,7 +842,7 @@ export default function WeddingInvitation() {
                 checked={attendance === "yes"}
                 onChange={() => setAttendance("yes")}
               />
-              Joyfully accepts
+              <Bi en="Joyfully accepts" ur="خوشی سے شرکت کروں گا/گی" />
             </label>
 
             <label className="flex items-center gap-2">
@@ -822,7 +853,7 @@ export default function WeddingInvitation() {
                 checked={attendance === "no"}
                 onChange={() => setAttendance("no")}
               />
-              Regretfully declines
+              <Bi en="Regretfully declines" ur="معذرت کے ساتھ شرکت نہیں کر سکوں گا/گی" />
             </label>
           </div>
 
@@ -832,7 +863,7 @@ export default function WeddingInvitation() {
                 htmlFor="guest-count"
                 className="mb-2 block text-xs uppercase tracking-widest text-[#8b897d]"
               >
-                Number of guests
+                <Bi en="Number of guests" ur="مہمانوں کی تعداد" />
               </label>
 
               <select
@@ -854,7 +885,7 @@ export default function WeddingInvitation() {
             htmlFor="guest-message"
             className="mb-2 block text-xs uppercase tracking-widest text-[#8b897d]"
           >
-            Message (optional)
+            <Bi en="Message (optional)" ur="پیغام (اختیاری)" />
           </label>
 
           <textarea
@@ -907,7 +938,7 @@ export default function WeddingInvitation() {
           One love. One promise. One beautiful forever.
           <span lang="ur" dir="rtl" className="mt-3 block">ایک محبت، ایک وعدہ، اور ہمیشہ کے لیے ایک خوبصورت ساتھ۔</span>
           <br />
-          We cannot wait to celebrate with you.
+          <Bi en="We cannot wait to celebrate with you." ur="ہم آپ کے ساتھ خوشیاں منانے کے منتظر ہیں۔" />
           <span lang="ur" dir="rtl" className="mt-2 block">ہم آپ کے ساتھ خوشیاں منانے کے منتظر ہیں۔</span>
         </p>
 
@@ -915,7 +946,7 @@ export default function WeddingInvitation() {
           href="#home"
           className="mt-9 inline-block border border-white/40 px-7 py-3 text-xs uppercase tracking-widest transition hover:bg-white hover:text-[#344b3d]"
         >
-          Back to top ↑
+          <Bi en="Back to top ↑" ur="اوپر جائیں ↑" />
         </a>
 
         <p className="mt-16 text-[10px] uppercase tracking-[0.25em] text-white/50">
