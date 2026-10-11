@@ -180,7 +180,7 @@ function CalendarButtons({
         onClick={() => downloadCalendar(event)}
         className="rounded-full border border-[#c8b783] px-5 py-3 text-xs font-medium tracking-wide transition hover:bg-[#f0ead9]"
       >
-        Download .ics
+        Download .ics <span lang="ur" dir="rtl">کیلنڈر فائل ڈاؤن لوڈ کریں</span>
       </button>
     </div>
   );
@@ -197,18 +197,49 @@ function SectionHeading({
 }) {
   return (
     <div className="mx-auto mb-14 max-w-2xl text-center">
-      <p className="text-xs uppercase tracking-[0.35em] text-[#a28c58]">
+      <p className="text-xs uppercase tracking-[0.2em] text-[#a28c58]">
         {eyebrow}
+        <span lang="ur" dir="rtl" className="mt-1 block text-sm tracking-normal"> {({
+          "Join the celebration": "تقریب میں شریک ہوں",
+          "Two families, one beautiful celebration": "دو خاندان، ایک خوبصورت جشن",
+          "A place in our hearts": "ہمارے دلوں میں ایک خاص جگہ",
+          "We would love to hear from you": "ہم آپ کے جواب کے منتظر ہیں",
+        } as Record<string, string>)[eyebrow] || "خوشی کے اس موقع پر آپ کو دعوت ہے"} </span>
       </p>
 
       <h2 className="mt-4 font-serif text-4xl font-normal sm:text-5xl">
         {title}
       </h2>
+      <p lang="ur" dir="rtl" className="mt-2 text-2xl leading-relaxed text-[#344b3d]">
+        {({
+          "Wedding Events": "شادی کی تقریبات",
+          "Our Families": "ہمارے خاندان",
+          "The Wedding Venues": "تقریبات کے مقامات",
+          "Contact & RSVP": "رابطہ اور شرکت کی تصدیق",
+        } as Record<string, string>)[title] || ""}
+      </p>
 
       <p className="mt-5 text-sm leading-7 text-[#77786e]">
         {description}
       </p>
+      <p lang="ur" dir="rtl" className="mt-3 text-sm leading-8 text-[#77786e]">
+        {({
+          "Wedding Events": "تین خاص تقریبات اور بے شمار خوبصورت یادیں۔ ہر تقریب کو اپنے کیلنڈر میں شامل کریں تاکہ کوئی لمحہ رہ نہ جائے۔",
+        } as Record<string, string>)[title] || "ہماری خوشیوں میں شامل ہوں اور اپنی موجودگی سے اس موقع کو یادگار بنائیں۔"}
+      </p>
     </div>
+  );
+}
+
+
+function Bi({ en, ur, className = "" }: { en: string; ur: string; className?: string }) {
+  return (
+    <span className={`inline-flex flex-col gap-1 ${className}`}>
+      <span>{en}</span>
+      <span lang="ur" dir="rtl" className="font-sans text-[0.95em] tracking-normal leading-relaxed">
+        {ur}
+      </span>
+    </span>
   );
 }
 
@@ -319,7 +350,7 @@ export default function WeddingInvitation() {
         aria-label={musicPlaying ? "Pause background music" : "Play background music"}
         className="fixed bottom-5 right-4 z-50 rounded-full border border-[#d6c18b] bg-[#344b3d]/95 px-4 py-3 text-xs uppercase tracking-widest text-white shadow-lg backdrop-blur transition hover:bg-[#506b56] sm:right-5 sm:px-5"
       >
-        {musicPlaying ? "Ⅱ Pause Music" : "♫ Play Music"}
+        {musicPlaying ? "Ⅱ Pause Music | موسیقی روکیں" : "♫ Play Music | موسیقی چلائیں"}
       </button>
 
       {/* 1. Hero */}
@@ -333,11 +364,11 @@ export default function WeddingInvitation() {
       >
         <div className="w-full max-w-3xl text-white">
           <p className="text-[10px] uppercase tracking-[0.3em] sm:text-sm sm:tracking-[0.4em]">
-            A celebration of love
+            <Bi en="A celebration of love" ur="محبت کا جشن" />
           </p>
 
           <p className="mt-6 font-serif text-xl italic sm:mt-10 sm:text-3xl">
-            Together with our families
+            <Bi en="Together with our families" ur="اپنے خاندانوں کے ساتھ" />
           </p>
 
           <h1 className="mt-4 font-serif text-5xl font-normal leading-tight sm:mt-5 sm:text-8xl">
@@ -349,7 +380,7 @@ export default function WeddingInvitation() {
           <div className="mx-auto my-5 h-px w-20 bg-[#e7d5a2] sm:my-8 sm:w-28" />
 
           <p className="text-xs uppercase tracking-[0.15em] sm:text-base sm:tracking-[0.25em]">
-            Invite you to share our special day
+            <Bi en="Invite you to share our special day" ur="ہماری خوشیوں میں شریک ہونے کی دعوت" />
           </p>
 
           <p className="mt-4 font-serif text-xl italic sm:mt-5 sm:text-2xl">
@@ -360,7 +391,7 @@ export default function WeddingInvitation() {
             href="#events"
             className="mt-7 inline-block border border-white/70 px-6 py-3 text-[10px] uppercase tracking-[0.2em] transition hover:bg-white hover:text-[#344b3d] sm:mt-10 sm:px-8 sm:py-4 sm:text-xs sm:tracking-[0.25em]"
           >
-            Explore Our Wedding ↓
+            <Bi en="Explore Our Wedding ↓" ur="شادی کی تقریبات دیکھیں ↓" />
           </a>
         </div>
 
@@ -384,11 +415,11 @@ export default function WeddingInvitation() {
           <p className="text-4xl text-[#a28c58]">❦</p>
 
           <p className="mt-6 text-xs uppercase tracking-[0.35em] text-[#a28c58]">
-            The pleasure of your company
+            <Bi en="The pleasure of your company" ur="آپ کی آمد ہمارے لیے باعثِ مسرت ہوگی" />
           </p>
 
           <h2 className="mt-7 font-serif text-4xl italic sm:text-6xl">
-            With hearts full of joy
+            <Bi en="With hearts full of joy" ur="خوشیوں سے بھرے دلوں کے ساتھ" />
           </h2>
 
           <p className="mx-auto mt-7 max-w-xl text-sm leading-8 text-[#77786e]">
@@ -396,6 +427,7 @@ export default function WeddingInvitation() {
             to have you by our side. Your love, blessings and presence
             will make our celebration truly unforgettable. Please join
             our families as we celebrate the beginning of our forever.
+            <span lang="ur" dir="rtl" className="mt-4 block">ہم اپنی زندگی کے اس خوبصورت نئے باب کا آغاز کر رہے ہیں۔ ہماری خوشیوں میں شریک ہو کر اپنی محبت، دعاؤں اور موجودگی سے اس دن کو یادگار بنائیں۔</span>
           </p>
 
           <p className="mt-8 font-serif text-xl italic">
@@ -412,11 +444,11 @@ export default function WeddingInvitation() {
         )}
       >
         <p className="text-xs uppercase tracking-[0.35em] text-[#a28c58]">
-          Save the date
+          <Bi en="Save the date" ur="تاریخ محفوظ کر لیں" />
         </p>
 
         <h2 className="mt-5 font-serif text-4xl sm:text-5xl">
-          Until We Say I Do
+          <Bi en="Until We Say I Do" ur="ہماری شادی تک باقی وقت" />
         </h2>
 
         <div className="mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-2 sm:gap-6">
@@ -456,7 +488,7 @@ export default function WeddingInvitation() {
       >
         <SectionHeading
           eyebrow="Join the celebration"
-          title="Wedding Events"
+          title="Wedding Events" description="Three special celebrations, countless beautiful memories. Choose an event and add it to your calendar so you never miss a moment."
           description="Three special celebrations, countless beautiful memories. Choose an event and add it to your calendar so you never miss a moment."
         />
 
@@ -513,19 +545,19 @@ export default function WeddingInvitation() {
                     {/* Time */}
                     <div className="flex items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">◷</span>
-                      <p>{event.time}</p>
+                      <p>{event.time}<span lang="ur" dir="rtl" className="mt-1 block">وقت: {event.time}</span></p>
                     </div>
 
                     {/* Venue */}
                     <div className="flex items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">⌖</span>
-                      <p>{event.venue}</p>
+                      <p>{event.venue}<span lang="ur" dir="rtl" className="mt-1 block">مقام: {event.venue}</span></p>
                     </div>
 
                     {/* Dress Code */}
                     <div className="flex items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">✧</span>
-                      <p>{event.dress}</p>
+                      <p>{event.dress}<span lang="ur" dir="rtl" className="mt-1 block">{event.dress === "Traditional & Colorful" ? "روایتی اور رنگین لباس" : event.dress === "Formal & Elegant" ? "رسمی اور خوبصورت لباس" : "نیم رسمی لباس"}</span></p>
                     </div>
                   </div>
 
@@ -573,7 +605,7 @@ export default function WeddingInvitation() {
 
             <div className="mx-auto my-6 h-px w-16 bg-[#d9cba9]" />
 
-            <p className="font-serif text-xl">Daughter of</p>
+            <p className="font-serif text-xl">Daughter of <span lang="ur" dir="rtl" className="block">دخترِ</span></p>
             <p className="mt-3 text-sm text-[#77786e]">Muhammad Nasir</p>
             <p className="mt-1 text-sm text-[#77786e]">Zohra Yasmin</p>
 
@@ -595,7 +627,7 @@ export default function WeddingInvitation() {
 
             <div className="mx-auto my-6 h-px w-16 bg-[#d9cba9]" />
 
-            <p className="font-serif text-xl">Son of</p>
+            <p className="font-serif text-xl">Son of <span lang="ur" dir="rtl" className="block">فرزندِ</span></p>
             <p className="mt-3 text-sm text-[#77786e]">Muhammad Jamal</p>
             <p className="mt-1 text-sm text-[#77786e]">Ghulam Fatima</p>
 
@@ -717,7 +749,7 @@ export default function WeddingInvitation() {
                         <circle cx="12" cy="10" r="2.5" />
                       </svg>
 
-                      Get Directions <span aria-hidden="true">↗</span>
+                      Get Directions <span lang="ur" dir="rtl">راستہ دیکھیں</span> <span aria-hidden="true">↗</span>
                     </a>
                   </div>
                 </article>
@@ -762,7 +794,7 @@ export default function WeddingInvitation() {
             onChange={(e) => setGuestName(e.target.value)}
             required
             maxLength={100}
-            placeholder="Enter your full name"
+            placeholder="Enter your full name / اپنا پورا نام لکھیں"
             className="mb-6 w-full border border-[#ded4bd] bg-white px-4 py-3 text-sm outline-none focus:border-[#a28c58]"
           />
 
@@ -831,7 +863,7 @@ export default function WeddingInvitation() {
             onChange={(e) => setMessage(e.target.value)}
             rows={4}
             maxLength={1000}
-            placeholder="Write a message for the couple..."
+            placeholder="Write a message for the couple... / جوڑے کے لیے پیغام لکھیں..."
             className="mb-6 w-full border border-[#ded4bd] bg-white px-4 py-3 text-sm outline-none focus:border-[#a28c58]"
           />
 
@@ -840,11 +872,13 @@ export default function WeddingInvitation() {
             className="w-full bg-[#344b3d] px-6 py-4 text-xs uppercase tracking-[0.2em] text-white transition hover:bg-[#506b56]"
           >
             Send RSVP via WhatsApp ↗
+            <span lang="ur" dir="rtl" className="mt-2 block text-sm tracking-normal">واٹس ایپ پر شرکت کی تصدیق بھیجیں</span>
           </button>
 
           <p className="mt-4 text-center text-xs leading-6 text-[#8b897d]">
             WhatsApp will open directly to the hosts&apos; number with your
             RSVP details prepared. Please review and press Send.
+            <span lang="ur" dir="rtl" className="mt-2 block">واٹس ایپ پر میزبان کا چیٹ کھل جائے گا اور آپ کی تفصیلات تیار ہوں گی۔ براہِ کرم جائزہ لے کر بھیج دیں۔</span>
           </p>
         </form>
       </section>
@@ -871,8 +905,10 @@ export default function WeddingInvitation() {
 
         <p className="mt-7 text-sm leading-7 text-white/75">
           One love. One promise. One beautiful forever.
+          <span lang="ur" dir="rtl" className="mt-3 block">ایک محبت، ایک وعدہ، اور ہمیشہ کے لیے ایک خوبصورت ساتھ۔</span>
           <br />
           We cannot wait to celebrate with you.
+          <span lang="ur" dir="rtl" className="mt-2 block">ہم آپ کے ساتھ خوشیاں منانے کے منتظر ہیں۔</span>
         </p>
 
         <a
