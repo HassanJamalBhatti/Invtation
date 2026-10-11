@@ -371,6 +371,28 @@ export default function WeddingInvitation() {
         onPlay={() => setMusicPlaying(true)}
         onPause={() => setMusicPlaying(false)}
       />
+      
+      {/* Floating WhatsApp Button */}
+      <a
+        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          `Assalam-o-Alaikum! I would like to contact you regarding the wedding of ${couple.groom} & ${couple.bride}.`
+        )}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
+        title="Contact us on WhatsApp"
+        className="fixed bottom-[4.5rem] right-3 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-[#25D366] text-white shadow-lg transition duration-300 hover:scale-110 hover:bg-[#1ebe5d] sm:bottom-[5.5rem] sm:right-5 sm:h-14 sm:w-14"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="h-6 w-6 sm:h-8 sm:w-8"
+          aria-hidden="true"
+        >
+          <path d="M20.52 3.48A11.8 11.8 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.6 5.94L.1 24l6.33-1.66a11.9 11.9 0 0 0 5.65 1.44h.01c6.55 0 11.88-5.33 11.88-11.88a11.8 11.8 0 0 0-3.45-8.42ZM12.09 21.76a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.76.99 1-3.67-.24-.38a9.84 9.84 0 0 1-1.51-5.23c0-5.46 4.45-9.91 9.92-9.91a9.85 9.85 0 0 1 7.01 2.91 9.85 9.85 0 0 1 2.9 7.02c0 5.46-4.45 9.91-9.92 9.91Zm5.44-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.5 1.7.64.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35Z" />
+        </svg>
+      </a>
 
       {/* Floating music control */}
       <button
@@ -434,6 +456,7 @@ export default function WeddingInvitation() {
       </section>
 
       {/* 2. Invitation */}
+
       <section
         id="story"
         className="w-full min-w-0 px-4 py-14 sm:px-5 sm:py-32"
@@ -441,31 +464,100 @@ export default function WeddingInvitation() {
           "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80"
         )}
       >
-        <div className="mx-auto w-full max-w-3xl border border-[#d9cba9] bg-[#fffdf8]/90 px-4 py-10 text-center backdrop-blur-sm sm:px-10 sm:py-16 md:px-16 md:py-20">
+        <div className="mx-auto w-full max-w-3xl border border-[#d9cba9] bg-[#fffdf8]/95 px-4 py-10 text-center backdrop-blur-sm sm:px-10 sm:py-16 md:px-16 md:py-20">
+
           <p className="text-4xl text-[#a28c58]">❦</p>
 
-          <p className="mt-6 text-xs uppercase tracking-[0.35em] text-[#a28c58]">
-            <Bi en="The pleasure of your company" ur="آپ کی آمد ہمارے لیے باعثِ مسرت ہوگی" />
+          {/* Invitation from Parents */}
+          <p className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs uppercase tracking-[0.2em] text-[#a28c58] sm:tracking-[0.3em]">
+            <span>The pleasure of your company</span>
+            <span lang="ur" dir="rtl" className="text-sm tracking-normal">
+              آپ کی آمد ہمارے لیے باعثِ مسرت ہوگی
+            </span>
           </p>
 
-          <h2 className="mt-7 font-serif text-3xl italic sm:text-6xl">
-            <Bi en="With hearts full of joy" ur="خوشیوں سے بھرے دلوں کے ساتھ" />
+          <h2 className="mt-7 font-serif text-3xl italic leading-relaxed sm:text-5xl">
+            <span className="block">With Great Joy & Happiness</span>
+            <span
+              lang="ur"
+              dir="rtl"
+              className="mt-3 block font-serif text-2xl not-italic leading-relaxed sm:text-3xl"
+            >
+              نہایت خوشی اور مسرت کے ساتھ
+            </span>
           </h2>
 
-          <p className="mx-auto mt-7 max-w-xl text-sm leading-8 text-[#77786e]">
-            We are beginning a beautiful new chapter and would be honored
-            to have you by our side. Your love, blessings and presence
-            will make our celebration truly unforgettable. Please join
-            our families as we celebrate the beginning of our forever.
-            <span lang="ur" dir="rtl" className="mt-4 block">ہم اپنی زندگی کے اس خوبصورت نئے باب کا آغاز کر رہے ہیں۔ ہماری خوشیوں میں شریک ہو کر اپنی محبت، دعاؤں اور موجودگی سے اس دن کو یادگار بنائیں۔</span>
+          {/* Parents' Invitation Message */}
+          <p className="mx-auto mt-7 max-w-xl text-sm leading-8 text-[#77786e] sm:text-base sm:leading-9">
+            With immense joy and gratitude to Almighty Allah, we cordially invite
+            you to join us in celebrating the wedding of our beloved children,
+            <span className="font-semibold text-[#344b3d]">
+              {" "}{couple.bride} & {couple.groom}
+            </span>.
+            <br />
+            Your gracious presence, heartfelt prayers, and blessings will make
+            this special occasion even more memorable for our families.
+
+            <span
+              lang="ur"
+              dir="rtl"
+              className="mt-5 block text-sm leading-8 sm:text-base sm:leading-9"
+            >
+              اللہ تعالیٰ کے فضل و کرم سے ہم اپنے پیارے بچوں
+              {" "}{urduNames[couple.bride]} اور {urduNames[couple.groom]}
+              {" "}کی شادی کی پُرمسرت تقریب میں آپ کو دلی طور پر مدعو کرتے ہیں۔
+              آپ کی تشریف آوری، دعائیں اور نیک تمنائیں ہمارے لیے باعثِ مسرت
+              ہوں گی اور ہماری خوشیوں کو دوبالا کریں گی۔
+            </span>
           </p>
 
-          <p className="mt-8 font-serif text-xl italic">
-            <span className="block">With love, {couple.bride} & {couple.groom}</span>
-            <span lang="ur" dir="rtl" className="mt-2 block text-lg">محبت کے ساتھ، {urduNames[couple.bride]} اور {urduNames[couple.groom]}</span>
+          {/* Parents' Names */}
+          <div className="mx-auto mt-9 max-w-lg border-y border-[#e4d9c2] py-6">
+
+            <p className="text-xs uppercase tracking-[0.2em] text-[#a28c58]">
+              With Warm Regards & Best Wishes
+            </p>
+
+            <p
+              lang="ur"
+              dir="rtl"
+              className="mt-2 text-sm text-[#a28c58]"
+            >
+              نیک تمناؤں اور محبت کے ساتھ
+            </p>
+
+            <p className="mt-5 font-serif text-lg leading-8 text-[#344b3d] sm:text-xl">
+              The Bride's Family & The Groom's Family
+            </p>
+
+            <p
+              lang="ur"
+              dir="rtl"
+              className="mt-2 text-base leading-8 text-[#344b3d]"
+            >
+              اہلِ خانہ کی جانب سے
+            </p>
+
+          </div>
+
+          <p className="mt-8 font-serif text-xl italic text-[#a28c58]">
+            We look forward to celebrating with you
           </p>
+
+          <p
+            lang="ur"
+            dir="rtl"
+            className="mt-3 text-base leading-8 text-[#77786e]"
+          >
+            ہمیں آپ کی آمد کا بے حد انتظار رہے گا
+          </p>
+
+          <p className="mt-7 text-3xl text-[#a28c58]">❦</p>
+
         </div>
       </section>
+
+
 
       {/* 3. Countdown */}
       <section
@@ -550,9 +642,9 @@ export default function WeddingInvitation() {
                 </div>
 
                 {/* Event Details */}
-                <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-7">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#a28c58]">
-                    {new Date(`${event.date}T12:00:00`).toLocaleDateString(
+                <div className="flex min-w-0  flex-1 flex-col p-4 sm:p-7">
+                  <p className="text-[11px] text-center uppercase tracking-[0.18em] text-[#a28c58]">
+                    —  {new Date(`${event.date}T12:00:00`).toLocaleDateString(
                       "en-US",
                       {
                         month: "long",
@@ -560,10 +652,10 @@ export default function WeddingInvitation() {
                         year: "numeric",
                         timeZone: "Asia/Karachi",
                       }
-                    )}
+                    )}  —
                   </p>
 
-                  <h3 className="mt-2 break-words font-serif text-2xl text-[#26382d] sm:text-3xl">
+                  <h3 className="mt-2 break-words text-center font-serif text-2xl text-[#26382d] sm:text-3xl">
                     <Bi en={event.title} ur={event.title === "Mehndi" ? "مہندی" : event.title === "Nikah & Baraat" ? "نکاح اور بارات" : "ولیمہ"} />
                   </h3>
 
@@ -795,6 +887,7 @@ export default function WeddingInvitation() {
       </section>
 
       {/* 7. Contact and RSVP */}
+
       <section
         id="contact"
         className="w-full min-w-0 px-4 py-14 sm:px-5 sm:py-32"
@@ -812,11 +905,15 @@ export default function WeddingInvitation() {
           onSubmit={submitRSVP}
           className="mx-auto w-full max-w-2xl min-w-0 border border-[#d9cba9] bg-[#fffdf8]/95 p-4 backdrop-blur-sm sm:p-10"
         >
+          {/* Guest Name */}
           <label
             htmlFor="guest-name"
-            className="mb-2 block text-xs uppercase tracking-widest text-[#8b897d]"
+            className="mb-2 flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-[#8b897d]"
           >
-            <Bi en="Your name" ur="آپ کا نام" />
+            <span>Your name</span>
+            <span lang="ur" dir="rtl" className="text-sm tracking-normal">
+              آپ کا نام
+            </span>
           </label>
 
           <input
@@ -829,12 +926,17 @@ export default function WeddingInvitation() {
             className="mb-6 block w-full min-w-0 max-w-full rounded-sm border border-[#ded4bd] bg-white px-3 py-3 text-sm outline-none focus:border-[#a28c58] sm:px-4"
           />
 
-          <p className="mb-3 text-xs uppercase tracking-widest text-[#8b897d]">
-            <Bi en="Will you attend?" ur="کیا آپ تقریب میں شرکت کریں گے؟" />
+          {/* Attendance Question */}
+          <p className="mb-3 flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-[#8b897d]">
+            <span>Will you attend?</span>
+            <span lang="ur" dir="rtl" className="text-sm tracking-normal">
+              کیا آپ تقریب میں شرکت کریں گے؟
+            </span>
           </p>
 
+          {/* Attendance Options */}
           <div className="mb-6 flex flex-col gap-4 text-sm sm:flex-row sm:flex-wrap sm:gap-5">
-            <label className="flex items-center gap-2">
+            <label className="flex flex-wrap items-center gap-2">
               <input
                 type="radio"
                 name="attendance"
@@ -842,10 +944,14 @@ export default function WeddingInvitation() {
                 checked={attendance === "yes"}
                 onChange={() => setAttendance("yes")}
               />
-              <Bi en="Joyfully accepts" ur="خوشی سے شرکت کروں گا/گی" />
+
+              <span>Joyfully accepts</span>
+              <span lang="ur" dir="rtl" className="text-sm">
+                خوشی سے شرکت کروں گا/گی
+              </span>
             </label>
 
-            <label className="flex items-center gap-2">
+            <label className="flex flex-wrap items-center gap-2">
               <input
                 type="radio"
                 name="attendance"
@@ -853,17 +959,25 @@ export default function WeddingInvitation() {
                 checked={attendance === "no"}
                 onChange={() => setAttendance("no")}
               />
-              <Bi en="Regretfully declines" ur="معذرت کے ساتھ شرکت نہیں کر سکوں گا/گی" />
+
+              <span>Regretfully declines</span>
+              <span lang="ur" dir="rtl" className="text-sm">
+                معذرت کے ساتھ شرکت نہیں کر سکوں گا/گی
+              </span>
             </label>
           </div>
 
+          {/* Number of Guests */}
           {attendance === "yes" && (
             <>
               <label
                 htmlFor="guest-count"
-                className="mb-2 block text-xs uppercase tracking-widest text-[#8b897d]"
+                className="mb-2 flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-[#8b897d]"
               >
-                <Bi en="Number of guests" ur="مہمانوں کی تعداد" />
+                <span>Number of guests</span>
+                <span lang="ur" dir="rtl" className="text-sm tracking-normal">
+                  مہمانوں کی تعداد
+                </span>
               </label>
 
               <select
@@ -881,11 +995,15 @@ export default function WeddingInvitation() {
             </>
           )}
 
+          {/* Optional Message */}
           <label
             htmlFor="guest-message"
-            className="mb-2 block text-xs uppercase tracking-widest text-[#8b897d]"
+            className="mb-2 flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-[#8b897d]"
           >
-            <Bi en="Message (optional)" ur="پیغام (اختیاری)" />
+            <span>Message (optional)</span>
+            <span lang="ur" dir="rtl" className="text-sm tracking-normal">
+              پیغام (اختیاری)
+            </span>
           </label>
 
           <textarea
@@ -898,21 +1016,39 @@ export default function WeddingInvitation() {
             className="mb-6 block w-full min-w-0 max-w-full rounded-sm border border-[#ded4bd] bg-white px-3 py-3 text-sm outline-none focus:border-[#a28c58] sm:px-4"
           />
 
+          {/* WhatsApp Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#344b3d] px-6 py-4 text-xs uppercase tracking-[0.2em] text-white transition hover:bg-[#506b56]"
+            className="w-full bg-[#344b3d] px-4 py-4 text-xs uppercase tracking-[0.15em] text-white transition hover:bg-[#506b56] sm:px-6 sm:tracking-[0.2em]"
           >
-            Send RSVP via WhatsApp ↗
-            <span lang="ur" dir="rtl" className="mt-2 block text-sm tracking-normal">واٹس ایپ پر شرکت کی تصدیق بھیجیں</span>
+            <span>Send RSVP via WhatsApp </span>
+            <span
+              lang="ur"
+              dir="rtl"
+              className="mt-2 block text-sm tracking-normal"
+            >
+              واٹس ایپ پر شرکت کی تصدیق بھیجیں
+            </span>
           </button>
 
+          {/* Confirmation Instructions */}
           <p className="mt-4 text-center text-xs leading-6 text-[#8b897d]">
-            WhatsApp will open directly to the hosts&apos; number with your
-            RSVP details prepared. Please review and press Send.
-            <span lang="ur" dir="rtl" className="mt-2 block">واٹس ایپ پر میزبان کا چیٹ کھل جائے گا اور آپ کی تفصیلات تیار ہوں گی۔ براہِ کرم جائزہ لے کر بھیج دیں۔</span>
+            WhatsApp will open directly to the hosts&apos; number with your RSVP
+            details prepared. Please review and press Send.
+
+            <span
+              lang="ur"
+              dir="rtl"
+              className="mt-2 block text-sm leading-7"
+            >
+              واٹس ایپ پر میزبان کا چیٹ کھل جائے گا اور آپ کی تفصیلات تیار ہوں گی۔
+              براہِ کرم جائزہ لے کر بھیج دیں۔
+            </span>
           </p>
         </form>
       </section>
+
+
 
       {/* 8. Closing */}
       <footer
@@ -939,7 +1075,7 @@ export default function WeddingInvitation() {
           <span lang="ur" dir="rtl" className="mt-3 block">ایک محبت، ایک وعدہ، اور ہمیشہ کے لیے ایک خوبصورت ساتھ۔</span>
           <br />
           <Bi en="We cannot wait to celebrate with you." ur="ہم آپ کے ساتھ خوشیاں منانے کے منتظر ہیں۔" />
-          <span lang="ur" dir="rtl" className="mt-2 block">ہم آپ کے ساتھ خوشیاں منانے کے منتظر ہیں۔</span>
+          {/* <span lang="ur" dir="rtl" className="mt-2 block">ہم آپ کے ساتھ خوشیاں منانے کے منتظر ہیں۔</span> */}
         </p>
 
         <a
