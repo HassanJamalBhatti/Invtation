@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "Hassan Jamal & Misha Shehzadi",
-    description: "Wedding Invitation | January 2027",
+    description: "Wedding Invitation",
     url: "/",
     siteName: "Wedding Invitation",
     type: "website",

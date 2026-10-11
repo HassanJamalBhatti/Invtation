@@ -91,7 +91,7 @@ const sectionBackground = (imageUrl: string) => ({
   backgroundImage: `linear-gradient(rgba(250,248,241,0.84), rgba(250,248,241,0.88)), url("${imageUrl}")`,
   backgroundSize: "cover",
   backgroundPosition: "center",
-  backgroundAttachment: "fixed" as const,
+  backgroundAttachment: "scroll" as const,
 });
 
 function formatCalendarDate(value: string) {
@@ -165,12 +165,12 @@ function CalendarButtons({
   event: (typeof events)[number];
 }) {
   return (
-    <div className="mt-6 flex flex-wrap gap-3">
+    <div className="mt-6 flex w-full flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
       <a
         href={googleCalendarUrl(event)}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 rounded-full bg-[#344b3d] px-5 py-3 text-xs font-medium tracking-wide text-white transition hover:bg-[#506b56]"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#344b3d] px-3 py-3 text-center text-xs font-medium tracking-wide text-white transition hover:bg-[#506b56] sm:w-auto sm:px-5"
       >
         <span>＋</span> Google Calendar
       </a>
@@ -178,7 +178,7 @@ function CalendarButtons({
       <button
         type="button"
         onClick={() => downloadCalendar(event)}
-        className="rounded-full border border-[#c8b783] px-5 py-3 text-xs font-medium tracking-wide transition hover:bg-[#f0ead9]"
+        className="w-full rounded-full border border-[#c8b783] px-3 py-3 text-center text-xs font-medium leading-relaxed transition hover:bg-[#f0ead9] sm:w-auto sm:px-5"
       >
         Download .ics <span lang="ur" dir="rtl">کیلنڈر فائل ڈاؤن لوڈ کریں</span>
       </button>
@@ -196,7 +196,7 @@ function SectionHeading({
   description: string;
 }) {
   return (
-    <div className="mx-auto mb-14 max-w-2xl text-center">
+    <div className="mx-auto mb-10 w-full max-w-2xl break-words text-center sm:mb-14">
       <p className="text-xs uppercase tracking-[0.2em] text-[#a28c58]">
         {eyebrow}
         <span lang="ur" dir="rtl" className="mt-1 block text-sm tracking-normal"> {({
@@ -207,7 +207,7 @@ function SectionHeading({
         } as Record<string, string>)[eyebrow] || "خوشی کے اس موقع پر آپ کو دعوت ہے"} </span>
       </p>
 
-      <h2 className="mt-4 font-serif text-4xl font-normal sm:text-5xl">
+      <h2 className="mt-4 break-words font-serif text-3xl font-normal sm:text-5xl">
         {title}
       </h2>
       <p lang="ur" dir="rtl" className="mt-2 text-2xl leading-relaxed text-[#344b3d]">
@@ -234,7 +234,7 @@ function SectionHeading({
 
 function Bi({ en, ur, className = "" }: { en: string; ur: string; className?: string }) {
   return (
-    <span className={`inline-flex flex-col gap-1 ${className}`}>
+    <span className={`inline-flex min-w-0 flex-col gap-1 break-words ${className}`}>
       <span>{en}</span>
       <span lang="ur" dir="rtl" className="font-sans text-[0.95em] tracking-normal leading-relaxed">
         {ur}
@@ -263,7 +263,7 @@ const urduNames: Record<string, string> = {
 
 function NameText({ value, className = "" }: { value: string; className?: string }) {
   return (
-    <span className={`inline-flex flex-col ${className}`}>
+    <span className={`inline-flex min-w-0 flex-col break-words ${className}`}>
       <span>{value}</span>
       <span lang="ur" dir="rtl" className="font-sans text-[0.9em] tracking-normal leading-relaxed">
         {urduNames[value] || value}
@@ -362,7 +362,7 @@ export default function WeddingInvitation() {
   }
 
   return (
-    <main className="overflow-hidden bg-[#faf8f1] text-[#344b3d]">
+    <main className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#faf8f1] text-[#344b3d]">
       <audio
         ref={musicRef}
         src="/music/wedding-romantic.mp3"
@@ -377,7 +377,7 @@ export default function WeddingInvitation() {
         type="button"
         onClick={toggleMusic}
         aria-label={musicPlaying ? "Pause background music" : "Play background music"}
-        className="fixed bottom-5 right-4 z-50 rounded-full border border-[#d6c18b] bg-[#344b3d]/95 px-4 py-3 text-xs uppercase tracking-widest text-white shadow-lg backdrop-blur transition hover:bg-[#506b56] sm:right-5 sm:px-5"
+        className="fixed bottom-3 right-3 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-[#d6c18b] bg-[#344b3d]/95 text-sm text-white shadow-lg backdrop-blur transition hover:bg-[#506b56] sm:bottom-5 sm:right-5 sm:h-auto sm:w-auto sm:px-5 sm:py-3 sm:text-xs sm:uppercase sm:tracking-widest"
       >
         {musicPlaying ? "Ⅱ" : "♫ "}
       </button>
@@ -385,22 +385,22 @@ export default function WeddingInvitation() {
       {/* 1. Hero */}
       <section
         id="home"
-        className="relative flex min-h-[100svh] items-center justify-center bg-cover bg-center px-5 py-16 text-center sm:py-20"
+        className="relative flex min-h-[100svh] w-full items-center justify-center bg-cover bg-center px-4 py-16 text-center sm:px-6 sm:py-20"
         style={{
           backgroundImage:
             "linear-gradient(rgba(23,36,28,.38),rgba(23,36,28,.55)),url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85')",
         }}
       >
-        <div className="w-full max-w-3xl text-white">
+        <div className="mx-auto w-full max-w-3xl min-w-0 break-words text-white">
           <p className="text-[10px] uppercase tracking-[0.3em] sm:text-sm sm:tracking-[0.4em]">
             <Bi en="A celebration of love" ur="محبت کا جشن" />
           </p>
 
-          <p className="mt-6 font-serif text-xl italic sm:mt-10 sm:text-3xl">
+          <p className="mt-5 font-serif text-lg italic sm:mt-10 sm:text-3xl">
             <Bi en="Together with our families" ur="اپنے خاندانوں کے ساتھ" />
           </p>
 
-          <h1 className="mt-4 font-serif text-5xl font-normal leading-tight sm:mt-5 sm:text-8xl">
+          <h1 className="mt-4 break-words font-serif text-[clamp(2.25rem,10vw,3.25rem)] font-normal leading-tight sm:mt-5 sm:text-8xl">
             <NameText value={couple.groom} />
             <span className="block text-[#e7d5a2]">&</span>
             <NameText value={couple.bride} />
@@ -419,7 +419,7 @@ export default function WeddingInvitation() {
 
           <a
             href="#events"
-            className="mt-7 inline-block border border-white/70 px-6 py-3 text-[10px] uppercase tracking-[0.2em] transition hover:bg-white hover:text-[#344b3d] sm:mt-10 sm:px-8 sm:py-4 sm:text-xs sm:tracking-[0.25em]"
+            className="mt-7 inline-flex max-w-full items-center justify-center border border-white/70 px-4 py-3 text-[10px] uppercase tracking-[0.12em] transition hover:bg-white hover:text-[#344b3d] sm:mt-10 sm:px-8 sm:py-4 sm:text-xs sm:tracking-[0.25em]"
           >
             <Bi en="Explore Our Wedding ↓" ur="شادی کی تقریبات دیکھیں ↓" />
           </a>
@@ -427,7 +427,7 @@ export default function WeddingInvitation() {
 
         <a
           href="#story"
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] uppercase tracking-[0.25em] text-white/80 sm:bottom-8 sm:text-xs sm:tracking-[0.3em]"
+          className="absolute bottom-3 left-1/2 w-full -translate-x-1/2 px-3 text-[9px] uppercase tracking-[0.12em] text-white/80 sm:bottom-8 sm:text-xs sm:tracking-[0.3em]"
         >
           Scroll to discover
         </a>
@@ -436,19 +436,19 @@ export default function WeddingInvitation() {
       {/* 2. Invitation */}
       <section
         id="story"
-        className="px-5 py-24 sm:py-32"
+        className="w-full min-w-0 px-4 py-14 sm:px-5 sm:py-32"
         style={sectionBackground(
           "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80"
         )}
       >
-        <div className="mx-auto max-w-3xl border border-[#d9cba9] bg-[#fffdf8]/90 px-6 py-14 text-center backdrop-blur-sm sm:px-16 sm:py-20">
+        <div className="mx-auto w-full max-w-3xl border border-[#d9cba9] bg-[#fffdf8]/90 px-4 py-10 text-center backdrop-blur-sm sm:px-10 sm:py-16 md:px-16 md:py-20">
           <p className="text-4xl text-[#a28c58]">❦</p>
 
           <p className="mt-6 text-xs uppercase tracking-[0.35em] text-[#a28c58]">
             <Bi en="The pleasure of your company" ur="آپ کی آمد ہمارے لیے باعثِ مسرت ہوگی" />
           </p>
 
-          <h2 className="mt-7 font-serif text-4xl italic sm:text-6xl">
+          <h2 className="mt-7 font-serif text-3xl italic sm:text-6xl">
             <Bi en="With hearts full of joy" ur="خوشیوں سے بھرے دلوں کے ساتھ" />
           </h2>
 
@@ -469,7 +469,7 @@ export default function WeddingInvitation() {
 
       {/* 3. Countdown */}
       <section
-        className="px-5 py-24 text-center sm:py-28"
+        className="w-full min-w-0 px-4 py-14 text-center sm:px-5 sm:py-28"
         style={sectionBackground(
           "https://images.unsplash.com/photo-1519225421980-88d3e6e6b8a5?auto=format&fit=crop&w=1800&q=80"
         )}
@@ -478,11 +478,11 @@ export default function WeddingInvitation() {
           <Bi en="Save the date" ur="تاریخ محفوظ کر لیں" />
         </p>
 
-        <h2 className="mt-5 font-serif text-4xl sm:text-5xl">
+        <h2 className="mt-5 font-serif text-3xl sm:text-5xl">
           <Bi en="Until We Say I Do" ur="ہماری شادی تک باقی وقت" />
         </h2>
 
-        <div className="mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-2 sm:gap-6">
+        <div className="mx-auto mt-8 grid w-full max-w-2xl grid-cols-4 gap-2 sm:mt-12 sm:gap-6">
           {[
             ["Days", remaining.days],
             ["Hours", remaining.hours],
@@ -491,9 +491,9 @@ export default function WeddingInvitation() {
           ].map(([label, value]) => (
             <div
               key={String(label)}
-              className="border border-[#ded4bd] bg-[#fffdf8]/90 px-1 py-6 backdrop-blur-sm sm:py-8"
+              className="min-w-0 border border-[#ded4bd] bg-[#fffdf8]/90 px-1 py-4 backdrop-blur-sm sm:py-8"
             >
-              <p className="font-serif text-2xl sm:text-5xl">
+              <p className="font-serif text-2xl tabular-nums sm:text-5xl">
                 {String(value).padStart(2, "0")}
               </p>
 
@@ -512,7 +512,7 @@ export default function WeddingInvitation() {
       {/* 4. Events and Calendar */}
       <section
         id="events"
-        className="px-5 py-20 sm:py-28"
+        className="w-full min-w-0 px-4 py-14 sm:px-5 sm:py-28"
         style={sectionBackground(
           "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1800&q=80"
         )}
@@ -522,7 +522,7 @@ export default function WeddingInvitation() {
           title="Wedding Events" description="Three special celebrations, countless beautiful memories. Choose an event and add it to your calendar so you never miss a moment."
         />
 
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {events.map((event, index) => {
             const eventImages = [
               "rasam-e-hina.jpg",
@@ -533,10 +533,10 @@ export default function WeddingInvitation() {
             return (
               <article
                 key={event.title}
-                className="group flex flex-col overflow-hidden border border-[#d8d0bb] bg-[#fffdf8]/95 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group flex min-w-0 flex-col overflow-hidden break-words border border-[#d8d0bb] bg-[#fffdf8]/95 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 {/* Event Image */}
-                <div className="relative h-56 overflow-hidden sm:h-64">
+                <div className="relative h-48 w-full overflow-hidden sm:h-64">
                   <img
                     src={eventImages[index % eventImages.length]}
                     alt={`${event.title} wedding celebration`}
@@ -550,7 +550,7 @@ export default function WeddingInvitation() {
                 </div>
 
                 {/* Event Details */}
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-7">
                   <p className="text-[11px] uppercase tracking-[0.18em] text-[#a28c58]">
                     {new Date(`${event.date}T12:00:00`).toLocaleDateString(
                       "en-US",
@@ -563,30 +563,30 @@ export default function WeddingInvitation() {
                     )}
                   </p>
 
-                  <h3 className="mt-2 font-serif text-2xl text-[#26382d] sm:text-3xl">
+                  <h3 className="mt-2 break-words font-serif text-2xl text-[#26382d] sm:text-3xl">
                     <Bi en={event.title} ur={event.title === "Mehndi" ? "مہندی" : event.title === "Nikah & Baraat" ? "نکاح اور بارات" : "ولیمہ"} />
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-[#77786e]">
+                  <p className="mt-3 break-words text-sm leading-6 text-[#77786e]">
                     {event.description}
                     <span lang="ur" dir="rtl" className="mt-2 block">{event.title === "Mehndi" ? "موسیقی، ہنسی، رنگوں اور خوشیوں سے بھری ایک شام۔" : event.title === "Nikah & Baraat" ? "اپنوں کی محبت اور دعاؤں کے سائے میں ہماری نئی زندگی کا خوبصورت آغاز۔" : "ہماری نئی زندگی کی خوشی میں اس یادگار شام کو ہمارے ساتھ منائیں۔"}</span>
                   </p>
 
                   <div className="mt-6 space-y-4 border-t border-[#e8e0cd] pt-5 text-sm leading-6 text-[#4e5148]">
                     {/* Time */}
-                    <div className="flex items-start gap-3">
+                    <div className="flex min-w-0 items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">◷</span>
-                      <p>{event.time}<span lang="ur" dir="rtl" className="mt-1 block">وقت: {event.time.replace("06:00 PM", "شام ۰۶:۰۰").replace("10:00 PM", "رات ۱۰:۰۰").replace("01:00 PM", "دوپہر ۰۱:۰۰").replace("04:00 PM", "شام ۰۴:۰۰")}</span></p>
+                      <p className="min-w-0 break-words">{event.time}<span lang="ur" dir="rtl" className="mt-1 block">وقت: {event.time.replace("06:00 PM", "شام ۰۶:۰۰").replace("10:00 PM", "رات ۱۰:۰۰").replace("01:00 PM", "دوپہر ۰۱:۰۰").replace("04:00 PM", "شام ۰۴:۰۰")}</span></p>
                     </div>
 
                     {/* Venue */}
-                    <div className="flex items-start gap-3">
+                    <div className="flex min-w-0 items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">⌖</span>
-                      <p>{event.venue}<span lang="ur" dir="rtl" className="mt-1 block">مقام: {urduNames[event.venue] || event.venue}</span></p>
+                      <p className="min-w-0 break-words">{event.venue}<span lang="ur" dir="rtl" className="mt-1 block">مقام: {urduNames[event.venue] || event.venue}</span></p>
                     </div>
 
                     {/* Dress Code */}
-                    <div className="flex items-start gap-3">
+                    <div className="flex min-w-0 items-start gap-3">
                       <span className="mt-0.5 text-xs text-[#a28c58]">✧</span>
                       <p>{event.dress}<span lang="ur" dir="rtl" className="mt-1 block">{event.dress === "Traditional & Colorful" ? "روایتی اور رنگین لباس" : event.dress === "Formal & Elegant" ? "رسمی اور خوبصورت لباس" : "نیم رسمی لباس"}</span></p>
                     </div>
@@ -610,7 +610,7 @@ export default function WeddingInvitation() {
       {/* 5. Families */}
       <section
         id="families"
-        className="px-5 py-24 sm:py-32"
+        className="w-full min-w-0 px-4 py-14 sm:px-5 sm:py-32"
         style={sectionBackground(
           "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1800&q=80"
         )}
@@ -621,8 +621,8 @@ export default function WeddingInvitation() {
           description="With the love, prayers and blessings of our families, we invite you to share in the joy of our new beginning."
         />
 
-        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-          <article className="border border-[#d9cba9] bg-[#fffdf8]/90 px-7 py-10 text-center backdrop-blur-sm sm:px-10">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+          <article className="min-w-0 border border-[#d9cba9] bg-[#fffdf8]/90 px-4 py-8 text-center backdrop-blur-sm sm:px-10 sm:py-10">
             <p className="text-3xl text-[#a28c58]">❦</p>
 
             <p className="mt-5 text-xs uppercase tracking-[0.3em] text-[#a28c58]">
@@ -644,7 +644,7 @@ export default function WeddingInvitation() {
             </p>
           </article>
 
-          <article className="border border-[#d9cba9] bg-[#fffdf8]/90 px-7 py-10 text-center backdrop-blur-sm sm:px-10">
+          <article className="min-w-0 border border-[#d9cba9] bg-[#fffdf8]/90 px-4 py-8 text-center backdrop-blur-sm sm:px-10 sm:py-10">
             <p className="text-3xl text-[#a28c58]">❦</p>
 
             <p className="mt-5 text-xs uppercase tracking-[0.3em] text-[#a28c58]">
@@ -675,21 +675,21 @@ export default function WeddingInvitation() {
       {/* 6. Venue */}
       <section
         id="location"
-        className="relative overflow-hidden px-5 py-24 sm:py-32"
+        className="relative w-full min-w-0 overflow-hidden px-4 py-14 sm:px-5 sm:py-32"
         style={sectionBackground(
           "https://images.unsplash.com/photo-1519225421980-88d3e6e6b8a5?auto=format&fit=crop&w=1800&q=80"
         )}
       >
         <div className="pointer-events-none absolute inset-0 bg-[#faf8f0]/90" />
 
-        <div className="relative z-10">
+        <div className="relative z-10 w-full min-w-0">
           <SectionHeading
             eyebrow="A place in our hearts"
             title="The Wedding Venues"
             description="Three beautiful celebrations, three special places. Select Get Directions to open the exact location."
           />
 
-          <div className="mx-auto mt-14 grid max-w-6xl gap-7 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-10 grid w-full max-w-6xl grid-cols-1 gap-5 md:mt-14 md:grid-cols-2 md:gap-7 lg:grid-cols-3">
             {venueCards.map((venue) => {
               const event = events.find(
                 (item) => item.title === venue.eventTitle
@@ -698,9 +698,9 @@ export default function WeddingInvitation() {
               return (
                 <article
                   key={venue.eventTitle}
-                  className="group flex flex-col overflow-hidden border border-[#d8c69b] bg-[#fffdf8] shadow-[0_12px_35px_rgba(73,58,34,0.07)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(73,58,34,0.13)]"
+                  className="group flex min-w-0 flex-col overflow-hidden break-words border border-[#d8c69b] bg-[#fffdf8] shadow-[0_12px_35px_rgba(73,58,34,0.07)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(73,58,34,0.13)]"
                 >
-                  <div className="relative h-56 overflow-hidden bg-[#e9e4d7]">
+                  <div className="relative h-48 w-full overflow-hidden bg-[#e9e4d7] sm:h-56">
                     <iframe
                       title={`${venue.venueName} Google Maps`}
                       src={`https://maps.google.com/maps?q=${encodeURIComponent(
@@ -718,7 +718,7 @@ export default function WeddingInvitation() {
                     </div>
                   </div>
 
-                  <div className="flex flex-1 flex-col px-6 py-7 text-center sm:px-7">
+                  <div className="flex min-w-0 flex-1 flex-col px-4 py-6 text-center sm:px-7 sm:py-7">
                     <p className="font-serif text-sm italic tracking-[0.2em] text-[#a28c58]">
                       — {venue.number} —
                     </p>
@@ -737,7 +737,7 @@ export default function WeddingInvitation() {
                       <NameText value={venue.venueName} />
                     </h4>
 
-                    <p className="mt-2 text-sm text-[#858276]">
+                    <p className="mt-2 break-words text-sm text-[#858276]">
                       {venue.address}
                       <span lang="ur" dir="rtl" className="mt-1 block">{urduNames[venue.address] || venue.address}</span>
                     </p>
@@ -748,11 +748,11 @@ export default function WeddingInvitation() {
                           <Bi en="Event details" ur="تقریب کی تفصیلات" />
                         </p>
 
-                        <p className="mt-2 text-sm leading-6 text-[#6e7065]">
+                        <p className="mt-2 break-words text-sm leading-6 text-[#6e7065]">
                           {event.time}
                         </p>
 
-                        <p className="mt-2 text-sm text-[#6e7065]">
+                        <p className="mt-2 break-words text-sm text-[#6e7065]">
                           {event.dress}
                         </p>
                       </div>
@@ -797,7 +797,7 @@ export default function WeddingInvitation() {
       {/* 7. Contact and RSVP */}
       <section
         id="contact"
-        className="px-5 py-24 sm:py-32"
+        className="w-full min-w-0 px-4 py-14 sm:px-5 sm:py-32"
         style={sectionBackground(
           "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1800&q=80"
         )}
@@ -810,7 +810,7 @@ export default function WeddingInvitation() {
 
         <form
           onSubmit={submitRSVP}
-          className="mx-auto max-w-2xl border border-[#d9cba9] bg-[#fffdf8]/95 p-6 backdrop-blur-sm sm:p-10"
+          className="mx-auto w-full max-w-2xl min-w-0 border border-[#d9cba9] bg-[#fffdf8]/95 p-4 backdrop-blur-sm sm:p-10"
         >
           <label
             htmlFor="guest-name"
@@ -826,14 +826,14 @@ export default function WeddingInvitation() {
             required
             maxLength={100}
             placeholder="Enter your full name / اپنا پورا نام لکھیں"
-            className="mb-6 w-full border border-[#ded4bd] bg-white px-4 py-3 text-sm outline-none focus:border-[#a28c58]"
+            className="mb-6 block w-full min-w-0 max-w-full rounded-sm border border-[#ded4bd] bg-white px-3 py-3 text-sm outline-none focus:border-[#a28c58] sm:px-4"
           />
 
           <p className="mb-3 text-xs uppercase tracking-widest text-[#8b897d]">
             <Bi en="Will you attend?" ur="کیا آپ تقریب میں شرکت کریں گے؟" />
           </p>
 
-          <div className="mb-6 flex flex-wrap gap-5 text-sm">
+          <div className="mb-6 flex flex-col gap-4 text-sm sm:flex-row sm:flex-wrap sm:gap-5">
             <label className="flex items-center gap-2">
               <input
                 type="radio"
@@ -870,7 +870,7 @@ export default function WeddingInvitation() {
                 id="guest-count"
                 value={guestCount}
                 onChange={(e) => setGuestCount(e.target.value)}
-                className="mb-6 w-full border border-[#ded4bd] bg-white px-4 py-3 text-sm"
+                className="mb-6 block w-full min-w-0 max-w-full rounded-sm border border-[#ded4bd] bg-white px-3 py-3 text-sm sm:px-4"
               >
                 {["1", "2", "3", "4", "5", "6"].map((count) => (
                   <option key={count} value={count}>
@@ -895,7 +895,7 @@ export default function WeddingInvitation() {
             rows={4}
             maxLength={1000}
             placeholder="Write a message for the couple... / جوڑے کے لیے پیغام لکھیں..."
-            className="mb-6 w-full border border-[#ded4bd] bg-white px-4 py-3 text-sm outline-none focus:border-[#a28c58]"
+            className="mb-6 block w-full min-w-0 max-w-full rounded-sm border border-[#ded4bd] bg-white px-3 py-3 text-sm outline-none focus:border-[#a28c58] sm:px-4"
           />
 
           <button
@@ -916,7 +916,7 @@ export default function WeddingInvitation() {
 
       {/* 8. Closing */}
       <footer
-        className="relative overflow-hidden bg-cover bg-center px-5 py-24 text-center text-white sm:py-32"
+        className="relative w-full min-w-0 overflow-hidden bg-cover bg-center px-4 py-14 text-center text-white sm:px-5 sm:py-32"
         style={{
           backgroundImage:
             "linear-gradient(rgba(23,36,28,.76),rgba(23,36,28,.88)),url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80')",
@@ -930,7 +930,7 @@ export default function WeddingInvitation() {
           The beginning of forever
         </p>
 
-        <h2 className="mt-6 font-serif text-4xl italic sm:text-7xl">
+        <h2 className="mt-6 break-words font-serif text-3xl italic sm:text-7xl">
           {couple.groom} & {couple.bride}
         </h2>
 
@@ -944,7 +944,7 @@ export default function WeddingInvitation() {
 
         <a
           href="#home"
-          className="mt-9 inline-block border border-white/40 px-7 py-3 text-xs uppercase tracking-widest transition hover:bg-white hover:text-[#344b3d]"
+          className="mt-9 inline-flex max-w-full items-center justify-center border border-white/40 px-5 py-3 text-xs uppercase tracking-wide transition hover:bg-white hover:text-[#344b3d] sm:px-7 sm:tracking-widest"
         >
           <Bi en="Back to top ↑" ur="اوپر جائیں ↑" />
         </a>
