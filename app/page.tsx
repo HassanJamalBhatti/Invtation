@@ -246,7 +246,7 @@ function Bi({ en, ur, className = "" }: { en: string; ur: string; className?: st
 }
 
 const urduNames: Record<string, string> = {
-  "Misha Shehzadi": "میشہ شہزادی",
+  "Misha Shehzadi": "مشاء شہزادی",
   "Hassan Jamal": "حسن جمال",
   "Muhammad Nasir": "محمد ناصر",
   "Zohra Yasmin": "زہرہ یاسمین",
@@ -368,26 +368,26 @@ export default function WeddingInvitation() {
   return (
     <main className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#faf8f1] text-[#344b3d]">
       {!invitationOpened && (
-  <WeddingSplashScreen
-    bride={couple.bride}
-    groom={couple.groom}
-    onStart={() => {
-      const audio = musicRef.current;
-      if (audio) {
-        audio.volume = 0.9;
-        audio.play().catch(() => setMusicPlaying(false));
-      }
-    }}
-    onOpen={() => {
-      setInvitationOpened(true);
-      setShowFx(true);
-    }}
-  />
-)}
+        <WeddingSplashScreen
+          bride={couple.bride}
+          groom={couple.groom}
+          onStart={() => {
+            const audio = musicRef.current;
+            if (audio) {
+              audio.volume = 0.9;
+              audio.play().catch(() => setMusicPlaying(false));
+            }
+          }}
+          onOpen={() => {
+            setInvitationOpened(true);
+            setShowFx(true);
+          }}
+        />
+      )}
 
-{showFx && (
-  <WeddingFireworks duration={7000} onDone={() => setShowFx(false)} />
-)}
+      {showFx && (
+        <WeddingFireworks duration={7000} onDone={() => setShowFx(false)} />
+      )}
 
       <audio
         ref={musicRef}

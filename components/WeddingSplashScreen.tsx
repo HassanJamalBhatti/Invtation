@@ -57,7 +57,7 @@ export default function WeddingSplashScreen({
   groom,
   onOpen,
   onStart,
-  urduNames = "حسن جمال ♥ میشہ شہزادی",
+  urduNames = "حسن جمال ♥ مشاء شہزادی",
   dateEn = "",
   dateUr = "",
   location = "",
