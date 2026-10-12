@@ -457,7 +457,10 @@ export default function WeddingInvitation() {
           <div className="mx-auto my-5 h-px w-20 bg-[#e7d5a2] sm:my-8 sm:w-28" />
 
           <p className="text-xs uppercase tracking-[0.15em] sm:text-base sm:tracking-[0.25em]">
-            <Bi en="Invite you to share our special day" ur="ہماری خوشیوں میں شریک ہونے کی دعوت" />
+            <Bi
+              en="With immense joy, we invite you to the wedding celebration of our beloved son"
+              ur="نہایت خوشی کے ساتھ ہم آپ کو اپنے پیارے بیٹے کی شادی کی تقریب میں شرکت کی دعوت دیتے ہیں"
+            />
           </p>
 
           <p className="mt-4 font-serif text-xl italic sm:mt-5 sm:text-2xl">
