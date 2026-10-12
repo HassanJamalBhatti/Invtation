@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Cormorant_Garamond, Noto_Nastaliq_Urdu } from "next/font/google";
 
+
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -57,9 +58,9 @@ export default function WeddingSplashScreen({
   onOpen,
   onStart,
   urduNames = "حسن جمال ♥ میشہ شہزادی",
-  dateEn = "January 07–09, 2027",
-  dateUr = "۷ تا ۹ جنوری ۲۰۲۷",
-  location = "Gujranwala, Pakistan",
+  dateEn = "",
+  dateUr = "",
+  location = "",
 }: WeddingSplashScreenProps) {
   const [opening, setOpening] = useState(false);
   const [gatesOpen, setGatesOpen] = useState(false);
@@ -127,16 +128,21 @@ export default function WeddingSplashScreen({
     setOpening(true);
   }, [opening, onStart]);
 
-  const groomInitial = groom.trim().charAt(0).toUpperCase();
-  const brideInitial = bride.trim().charAt(0).toUpperCase();
-
   const gateMotion = reduced
     ? "transition-opacity duration-300"
     : "transition-transform ease-[cubic-bezier(0.77,0,0.175,1)]";
 
+  // The solid cover (photo + colour layers) must disappear the moment the
+  // gates start moving, otherwise it would hide the real page behind them.
+  const coverFade = reduced ? "duration-200" : "duration-150";
+
   return (
     <div
-      className={`${serif.className} fixed inset-0 z-[100] overflow-hidden bg-[#10201a] text-[#fff9e9]`}
+      // NOTE: no solid background on the root any more – the real page must be
+      // visible through the gap while the gates slide apart.
+      className={`${serif.className} fixed inset-0 z-[100] overflow-hidden text-[#fff9e9] ${
+        gatesOpen ? "pointer-events-none" : ""
+      }`}
       style={{ height: "100dvh" }}
       role="dialog"
       aria-modal="true"
@@ -168,37 +174,31 @@ export default function WeddingSplashScreen({
         }
       `}</style>
 
-      {/* Background photo + overlays */}
+      {/* Cover layer: solid colour + photo + overlays. Fades out as soon as the
+          gates start opening so the real page shows through the gap. */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-35"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80')",
-        }}
+        className={`absolute inset-0 transition-opacity ${coverFade} ${
+          gatesOpen ? "opacity-0" : "opacity-100"
+        }`}
         aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-[#0f1d16]/85 via-[#1e3427]/60 to-[#0b150f]/95"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 42%, rgba(214,193,139,0.14), transparent 60%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Double gold frame */}
-      <div
-        className="pointer-events-none absolute inset-3 z-30 border border-[#d6c18b]/60 sm:inset-6"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-[18px] z-30 border border-[#d6c18b]/25 sm:inset-9"
-        aria-hidden="true"
-      />
+      >
+        <div className="absolute inset-0 bg-[#10201a]" />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-35"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f1d16]/85 via-[#1e3427]/60 to-[#0b150f]/95" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 42%, rgba(214,193,139,0.14), transparent 60%)",
+          }}
+        />
+      </div>
 
       {/* Scrollable, safely-centred content (m-auto avoids top clipping on short screens) */}
       <div
@@ -279,7 +279,7 @@ export default function WeddingSplashScreen({
               type="button"
               onClick={handleTap}
               disabled={opening}
-              className="ws-pulse inline-flex min-h-12 items-center justify-center gap-3 border border-[#d6c18b] bg-[#d6c18b]/15 px-8 py-3.5 text-base tracking-[0.12em] text-[#fff9e9] transition duration-300 hover:bg-[#d6c18b] hover:text-[#1e3427] focus-visible:bg-[#d6c18b] focus-visible:text-[#1e3427] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#fff9e9] disabled:cursor-wait disabled:animate-none"
+              className="ws-pulse inline-flex min-h-12 items-center justify-center gap-3  bg-[#d6c18b]/15 px-8 py-3.5 text-base tracking-[0.12em] text-[#fff9e9] transition duration-300 hover:bg-[#d6c18b] hover:text-[#1e3427] focus-visible:bg-[#d6c18b] focus-visible:text-[#1e3427] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#fff9e9] disabled:cursor-wait disabled:animate-none"
             >
               <span aria-hidden="true">✧</span>
               <span>{opening ? "Opening…" : "Open invitation"}</span>
@@ -300,33 +300,21 @@ export default function WeddingSplashScreen({
       {/* Left gate (no border-r, so no line is visible before the tap) */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-1/2 bg-gradient-to-br from-[#365240] via-[#233a2b] to-[#12221a] ${gateMotion} ${
+        className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-1/2 bg-gradient-to-br from-[#365240] via-[#233a2b] to-[#12221a] will-change-transform ${gateMotion} ${
           gatesOpen ? (reduced ? "opacity-0" : "-translate-x-full") : "translate-x-0"
         }`}
         style={{ transitionDuration: reduced ? undefined : `${GATE_MS}ms` }}
       >
-        <div className={gatesOpen ? "invisible" : ""}>
-          <div className="absolute inset-3 border border-[#d6c18b]/50 sm:inset-6" />
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-2xl text-[#d6c18b] sm:right-6 sm:text-4xl">
-            {groomInitial}
-          </div>
-        </div>
       </div>
 
       {/* Right gate (no border-l) */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-1/2 bg-gradient-to-bl from-[#365240] via-[#233a2b] to-[#12221a] ${gateMotion} ${
+        className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-1/2 bg-gradient-to-bl from-[#365240] via-[#233a2b] to-[#12221a] will-change-transform ${gateMotion} ${
           gatesOpen ? (reduced ? "opacity-0" : "translate-x-full") : "translate-x-0"
         }`}
         style={{ transitionDuration: reduced ? undefined : `${GATE_MS}ms` }}
       >
-        <div className={gatesOpen ? "invisible" : ""}>
-          <div className="absolute inset-3 border border-[#d6c18b]/50 sm:inset-6" />
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-2xl text-[#d6c18b] sm:left-6 sm:text-4xl">
-            {brideInitial}
-          </div>
-        </div>
       </div>
 
       {/* Center line: appears only after the button press, draws top to bottom, then gates open */}

@@ -1,5 +1,6 @@
 "use client";
 import WeddingSplashScreen from "@/components/WeddingSplashScreen";
+import WeddingFireworks from "@/components/WeddingFireworks";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -289,6 +290,7 @@ export default function WeddingInvitation() {
   const [guestCount, setGuestCount] = useState("2");
   const [message, setMessage] = useState("");
   const [invitationOpened, setInvitationOpened] = useState(false);
+  const [showFx, setShowFx] = useState(false);
 
   useEffect(() => {
     const target = new Date("2027-01-07T18:00:00+05:00").getTime();
@@ -366,12 +368,26 @@ export default function WeddingInvitation() {
   return (
     <main className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#faf8f1] text-[#344b3d]">
       {!invitationOpened && (
-      <WeddingSplashScreen
-        bride={couple.bride}
-        groom={couple.groom}
-        onOpen={() => setInvitationOpened(true)}
-      />
-    )}
+  <WeddingSplashScreen
+    bride={couple.bride}
+    groom={couple.groom}
+    onStart={() => {
+      const audio = musicRef.current;
+      if (audio) {
+        audio.volume = 0.9;
+        audio.play().catch(() => setMusicPlaying(false));
+      }
+    }}
+    onOpen={() => {
+      setInvitationOpened(true);
+      setShowFx(true);
+    }}
+  />
+)}
+
+{showFx && (
+  <WeddingFireworks duration={7000} onDone={() => setShowFx(false)} />
+)}
 
       <audio
         ref={musicRef}
